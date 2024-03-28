@@ -20,7 +20,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     environment:
-     name: ${{ github.ref_name }}
+     name: ${{ github.ref }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -54,4 +54,14 @@ jobs:
       - name: Test variable after setting
         run: echo "${{ env.VARIABLE_NAME }}"
       - name: branch base Test variable after setting
+        run: echo "${{ env.TEST_ORG_MASTER }}"
+
+      - name: 222 Set Environment Variables for Master Branch
+        if: github.ref == 'refs/heads/master'
+        run: echo "VARIABLE_NAME=${{ env.TEST_ORG_MASTER }}" >> $GITHUB_ENV
+
+      - name: 222 Test variable after setting
+        run: echo "${{ env.VARIABLE_NAME }}"
+
+      - name: 222 Branch-based Test variable after setting
         run: echo "${{ env.TEST_ORG_MASTER }}"

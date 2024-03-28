@@ -59,4 +59,4 @@ jobs:
         run: echo "VARIABLE_NAME=${{ vars.KRISHNA }}" >> $GITHUB_ENV
 
       - name: Test variable after setting
-        run: echo "$VARIABLE_NAME"
+        run: echo $VARIABLE_NAME

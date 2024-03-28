@@ -42,5 +42,12 @@ jobs:
       - name: test secrates
         run: echo "${{ secrets.TEST_ORG_SECRATES }}"    
 
-      - name: test variable
-        run: echo "${{ env.TEST_ORG_MASTER }}"
+      # - name: test variable
+      #   run: echo "${{ env.TEST_ORG_MASTER }}"
+
+      - name: Set Environment Variables for Master Branch
+        if: github.ref == 'refs/heads/master'
+        run: echo "VARIABLE_NAME=${{ env.TEST_ORG_MASTER }}" >> $GITHUB_ENV
+
+      - name: Test variable after setting
+        run: echo "${{ env.VARIABLE_NAME }}"

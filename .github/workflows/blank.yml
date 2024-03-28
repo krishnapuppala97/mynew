@@ -37,4 +37,4 @@ jobs:
 
 
       - name: test variable
-        run: echo "${{ var.TEST_ORG }}"
+        run: echo "${{ vars.TEST_ORG }}"

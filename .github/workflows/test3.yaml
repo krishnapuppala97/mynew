@@ -1,0 +1,62 @@
+name: Cd
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env: 
+     TEST: ${{ vars.TEST_ORG_MASTER }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+      - name: Test variable
+        run: echo "${{ vars.KRISHNA }}"
+
+      - name: Test secrets
+        run: echo "${{ secrets.TEST_ORG_SECRETS }}"
+
+      - name: Set Environment Variables for Master Branch
+        if: github.ref == 'refs/heads/staging'
+        run: echo "VARIABLE_NAME=${{ env.KRISHNA }}" >> $GITHUB_ENV
+
+      - name: Test variable after setting
+        run: echo "${{ env.VARIABLE_NAME }}"
+
+      - name: Branch-based Test variable after setting
+        run: echo "${{ vars.TEST_ORG_MASTER }}"
+      - name: Branch-based Test variable after setting
+        run: echo "$TEST"
+
+
+
+      - name: vars Test variable
+        run: echo "${{ vars.KRISHNA }}"
+      - name: env Test variable
+        run: echo "${{ env.KRISHNA }}"
+      - name: Test variable
+        run: echo "${{ vars.KRISHNA }}"
+
+      - name: Set Environment Variables for Master Branch
+        if: github.ref == 'refs/heads/staging'
+        run: echo "VARIABLE_NAME=${{ vars.KRISHNA }}" >> $GITHUB_ENV
+
+      - name: Test variable after setting
+        run: echo "$VARIABLE_NAME"

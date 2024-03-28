@@ -43,4 +43,4 @@ jobs:
         run: echo "${{ secrets.TEST_ORG_SECRATES }}"    
 
       - name: test variable
-        run: echo "${{ vars.TEST_ORG_MASTER }}"
+        run: echo "${{ env.TEST_ORG_MASTER }}"

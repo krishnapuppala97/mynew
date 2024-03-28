@@ -20,7 +20,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     environment:
-     name: master #${{ github.ref }}
+     name: ${GITHUB_REF##*/}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

@@ -1,19 +1,19 @@
-name: Cd
+name: staging
 
 on:
   push:
     branches: 
-      - master
+      - staging
   pull_request:
     branches:
-      - master
+      - staging
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env: 
-     TEST: ${{ vars.TEST_ORG_MASTER }}
+    # env: 
+    #  KRISHNA: ${{ "vars.KRISHNA }}"
 
     steps:
       - name: Checkout Repository

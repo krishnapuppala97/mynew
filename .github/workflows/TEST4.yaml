@@ -1,4 +1,4 @@
-name: test-staging
+name: staging
 
 on:
   push:
@@ -13,12 +13,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      STAGING_VARIABLE_VALUE: ${{ github.event.inputs.KRISHNA }}
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: Set Environment Variables
+        run: |
+          echo "STAGING_VARIABLE_VALUE=${{ github.event.inputs.KRISHNA }}" >> $GITHUB_ENV
 
       - name: Run a one-line script
         run: echo Hello, world!

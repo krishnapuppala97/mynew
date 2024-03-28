@@ -1,0 +1,44 @@
+name: Cd
+
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.ref }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+      - name: Test variable
+        run: echo "${{ env.TEST_ORG }}"
+
+      - name: Test secrets
+        run: echo "${{ secrets.TEST_ORG_SECRETS }}"
+
+      - name: Set Environment Variables for Master Branch
+        if: github.ref == 'refs/heads/master'
+        run: echo "VARIABLE_NAME=${{ env.TEST_ORG_MASTER }}" >> $GITHUB_ENV
+
+      - name: Test variable after setting
+        run: echo "${{ env.VARIABLE_NAME }}"
+
+      - name: Branch-based Test variable after setting
+        run: echo "${{ env.TEST_ORG_MASTER }}"

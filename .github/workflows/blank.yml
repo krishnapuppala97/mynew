@@ -40,4 +40,7 @@ jobs:
         run: echo "${{ vars.TEST_ORG }}"
 
       - name: test secrates
-        run: echo "${{ secrets.TEST_ORG_SECRATES }}"
+        run: echo "${{ secrets.TEST_ORG_SECRATES }}"    
+
+      - name: test variable
+        run: echo "${{ vars.TEST_ORG_MASTER }}"

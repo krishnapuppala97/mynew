@@ -51,3 +51,5 @@ jobs:
 
       - name: Test variable after setting
         run: echo "${{ env.VARIABLE_NAME }}"
+      - name: branch base Test variable after setting
+        run: echo "$TEST_ORG_MASTER"

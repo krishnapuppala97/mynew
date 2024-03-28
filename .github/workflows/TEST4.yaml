@@ -1,8 +1,8 @@
-name: staging
+name: test-staging
 
 on:
   push:
-    branches: 
+    branches:
       - staging
   pull_request:
     branches:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      STAGING_VARIABLE_VALUE: ${{ env.KRISHNA }}
+      STAGING_VARIABLE_VALUE: ${{ github.event.inputs.KRISHNA }}
 
     steps:
       - name: Checkout Repository
